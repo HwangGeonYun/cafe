@@ -1,13 +1,44 @@
 package Menu;
 
 public class Beverage {
-    private int price;
-    private int size;
+    enum SIZE {TALL, GRANDE, VENTI};
     private String name;
+    private String size;
+    private int price;
 
-    public Beverage(int price, int size, String name) {
-        this.price = price;
-        this.size = size;
+    private String kinds;
+
+    public Beverage(String name, String size, String kinds) {
         this.name = name;
+        this.size = size;
+        this.kinds = kinds;
+        getPriceBySize(size);
+       // basePriceBykinds();
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void getPriceBySize(String size){
+
+        switch(size){
+            case "TALL"->price = 4500;
+            case "GRANDE" -> price = 5000;
+            case "VENTI" -> price = 5500;
+        }
+    }
+
+    public int getPrice(){
+        return price;
+    }
+
+    public void sizeTo(String size){
+        this.size = size;
+        getPriceBySize(size);
+    }
+    @Override
+    public String toString(){
+        return "name:"+name + ", size:"+size;
     }
 }
