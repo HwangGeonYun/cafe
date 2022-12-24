@@ -6,12 +6,12 @@ public class Beverage {
     private String size;
     private int price;
 
-    private String kinds;
+    private String kind;
 
-    public Beverage(String name, String size, String kinds) {
+    public Beverage(String name, String size, String kind) {
         this.name = name;
         this.size = size;
-        this.kinds = kinds;
+        this.kind = kind;
         getPriceBySize(size);
        // basePriceBykinds();
     }
