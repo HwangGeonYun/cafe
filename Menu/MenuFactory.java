@@ -17,11 +17,11 @@ public class MenuFactory {
     public void addKinds(String kind, int basePrice){
         kinds.put(kind, basePrice);
     };*/
-
-    public void addCreatedMenu(String beverage){
+//menuFactory에서 add를 하는 건 목적에 부합하지않는듯
+    /*public void addCreatedMenu(String beverage){
         createMenu(beverage.split(","));
         br.save(beverage);
-    }
+    }*/
 
     static public Beverage createMenu(String[] fields){
        return new Beverage(ResourceFile.getKind(fields), ResourceFile.getName(fields)

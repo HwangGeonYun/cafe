@@ -9,7 +9,7 @@ public class BeverageTest {
 
         repository.getBeverageList().stream().forEach(System.out::println);
 
-        menuFactory.addCreatedMenu("coffee,ame,4500,\"Tall, Venti\"");
+        repository.addCreatedMenu("coffee,ame,4500,\"Tall, Venti\"");
 
         repository.getBeverageList().stream().forEach(System.out::println);
 
