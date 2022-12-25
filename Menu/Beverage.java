@@ -25,9 +25,9 @@ public class Beverage {
     }*/
 
     //관리자용
-    Beverage(String name, String kind, int basePrice, List<String> sizeList){
-        this.name = name;
+    Beverage(String kind, String name, int basePrice, List<String> sizeList){
         this.kind = kind;
+        this.name = name;
         this.basePrice = basePrice;
         this.sizeList = sizeList;
         //this.priceBySize = priceBySize;

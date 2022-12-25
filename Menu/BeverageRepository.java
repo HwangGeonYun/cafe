@@ -18,13 +18,17 @@ public class BeverageRepository {
 
     //void add(Beverage beverage){beverageList.add(beverage);}
 
-    void addKind(String kind){
+    public Iterator createIterator(List lists){
+        return lists.iterator();
+    }
+    public void addKind(String kind){
         kindList.add(kind);
     }
 
-    void load(){
+    public void load(){
         try(Scanner scanner = new Scanner(new File(resourceFile))){
             if(scanner.hasNext()) scanner.nextLine();
+
             while(scanner.hasNext()){
                 String line = scanner.nextLine();
                 //System.out.println(line.split(",").);
@@ -33,9 +37,9 @@ public class BeverageRepository {
             }
 
             kindList = beverageList.stream().map(b->b.getKind()).distinct().toList();
-
+            System.out.println("kindList:"+kindList.size());
         }catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -68,9 +72,12 @@ public class BeverageRepository {
     public List<Beverage>getBeverageList(){
         return beverageList;
     }
+    public List<String>getKindList(){return kindList;}
+
     Beverage search(String kind, String name){
         return beverageList.stream().filter(b->b.getName().equals(name)&&b.getKind().equals(kind)).findFirst().get();
     }
+
     //소비자가 요청한 음료 객체 생성
     Beverage makeBeverage(String kind, String name, String size){
         Beverage beverage;
