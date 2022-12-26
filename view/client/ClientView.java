@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import Controller.RepositoryController;
 import Menu.*;
 
 import java.util.Iterator;
@@ -12,6 +14,7 @@ import java.util.List;
 public class ClientView extends JFrame {
 
     BeverageRepository br;
+    RepositoryController rc;
 
 //    GridBagLayout layout = new GridBagLayout();
 //    GridBagConstraints gbc;
@@ -36,14 +39,17 @@ public class ClientView extends JFrame {
         br.addKind("cookie");
         br.addKind("bread");*/
         //테스트용 나중에 load protect로 막아야 함
-        BeverageRepository Repository = new BeverageRepository();
-
         br.load();
+        //br.addKind("Blended");
+        //br.addKind("Teavana");
 
-        System.out.println(br.getBeverageList());
 
-        menusPanel = new MenusPanel(br);
-        menuKinds = new MenuKinds(br, menusPanel);
+
+        rc = new RepositoryController(br);
+        System.out.println(rc.getBeverageList());
+
+        menusPanel = new MenusPanel(rc);
+        menuKinds = new MenuKinds(rc, menusPanel);
 
 
 

@@ -1,5 +1,6 @@
 package view.client;
 
+import Controller.RepositoryController;
 import Menu.BeverageRepository;
 import Menu.Beverage;
 
@@ -10,20 +11,24 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class MenusPanel extends JPanel implements ActionListener {
-    BeverageRepository br;
-
+    RepositoryController rc;
     List<Beverage> beverageList;
+
+    BeverageHandler beverageHandler;
     JButton[] beverageButtons = new JButton[12];
-    MenusPanel(BeverageRepository br){
-        this.br = br;
+    MenusPanel(RepositoryController rc){
+        this.rc = rc;
+        beverageHandler = new BeverageHandler(rc);
 
         setLayout(new GridLayout(3,4));
         for(int i = 0;i<12;i++){
             JButton jButton = new JButton();
             beverageButtons[i] = (jButton);
             add(beverageButtons[i]);
-            beverageButtons[i].setVisible(true);
+            beverageButtons[i].setVisible(false);
         }
+
+
         //setLayout(new GridLayout(3,4));
         setSize(800, 600);
         setLocation(0, 140);
@@ -31,7 +36,24 @@ public class MenusPanel extends JPanel implements ActionListener {
     };
     @Override
     public void actionPerformed(ActionEvent e){
-        beverageList = br.getBeverageList().stream().filter(b->b.getKind().equals(e.getActionCommand())).toList();
+        beverageList = rc.getBeverageList().stream().filter(b->b.getKind().equals(e.getActionCommand())).toList();
+        System.out.println(beverageList.size());
+
+        for(int i =0;i<12;i++){
+            beverageButtons[i].removeActionListener(beverageHandler);
+        }
+        for(int i = 0;i<12 ;i++){
+            if(i<beverageList.size()) {
+                beverageButtons[i].setText(beverageList.get(i).getName()); //new JButton(beverageList.get(i).getName());
+                beverageButtons[i].setVisible(true);
+                beverageButtons[i].addActionListener(beverageHandler);
+            }
+            else beverageButtons[i].setVisible(false);
+        }
+    }
+
+    /*public void getMenuOfKind(){
+        beverageList = br.getBeverageList().stream().filter(b->b.getKind().equals().toList();
         System.out.println(beverageList.size());
 
         for(int i = 0;i<12 ;i++){
@@ -42,5 +64,5 @@ public class MenusPanel extends JPanel implements ActionListener {
             }
             else beverageButtons[i].setVisible(false);
         }
-    }
+    }*/
 }

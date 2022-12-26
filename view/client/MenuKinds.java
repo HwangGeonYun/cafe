@@ -6,12 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+
+import Controller.RepositoryController;
 import Menu.BeverageRepository;
 
 public class MenuKinds extends JPanel implements ActionListener {
 
     List<String> kindList;
-    BeverageRepository br;
+    //BeverageRepository br;
 
     MenusPanel menusPanel;
     GridBagConstraints grid;
@@ -22,14 +24,14 @@ public class MenuKinds extends JPanel implements ActionListener {
 
     JButton[] buttonList = new JButton[4];
     int kindPageNumber = 0;
-    MenuKinds(BeverageRepository br, MenusPanel menusPanel) {
-        this.br = br;
+    MenuKinds(RepositoryController rc, MenusPanel menusPanel) {
+        //this.br = br;
         this.menusPanel = menusPanel;
 
         for(int i = 0;i<4;i++)
             buttonList[i] = new JButton();
 
-        kindList = br.getKindList();
+        kindList = rc.getKindList();
 
         setSize(800, 100);
         setLocation(0, 20);
@@ -92,6 +94,8 @@ public class MenuKinds extends JPanel implements ActionListener {
                 buttonList[i].setVisible(true);
             }
             else buttonList[i].setVisible(false);
+
+            buttonList[0].doClick();
         }
     }
 
