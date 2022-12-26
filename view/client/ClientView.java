@@ -13,23 +13,30 @@ import java.util.List;
 
 public class ClientView extends JFrame {
 
-    BeverageRepository br;
-    RepositoryController rc;
+    //BeverageRepository br;
+      RepositoryController rc = new RepositoryController();
 
 //    GridBagLayout layout = new GridBagLayout();
 //    GridBagConstraints gbc;
+
+
+
     MenuKinds menuKinds;
     MenusPanel menusPanel;
 
     JPanel baskets;
 
-
+    List<Beverage> beverageList;
     JButton order = new JButton("주문하기");
 
     ClientView(){
 
         setLayout(null);
-        br = new BeverageRepository();
+        System.out.println("1");
+        beverageList = rc.getBeverageList();
+        System.out.println("2");
+
+        //br = new BeverageRepository();
 
         //테스트용
         /*br.addKind("Coffee");
@@ -39,17 +46,17 @@ public class ClientView extends JFrame {
         br.addKind("cookie");
         br.addKind("bread");*/
         //테스트용 나중에 load protect로 막아야 함
-        br.load();
+        //br.load();
         //br.addKind("Blended");
         //br.addKind("Teavana");
 
 
+        //server 연결을 위해 지움
+        //rc = new RepositoryController(br);
+        //System.out.println(rc.getBeverageList());
 
-        rc = new RepositoryController(br);
-        System.out.println(rc.getBeverageList());
-
-        menusPanel = new MenusPanel(rc);
-        menuKinds = new MenuKinds(rc, menusPanel);
+        menusPanel = new MenusPanel(beverageList, rc);
+        menuKinds = new MenuKinds(beverageList, rc, menusPanel);
 
 
 

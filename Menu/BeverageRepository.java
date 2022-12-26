@@ -7,7 +7,12 @@ import java.util.*;
 import java.io.*;
 
 public class BeverageRepository {
+
+    private static BeverageRepository instance = new BeverageRepository();
     private static List<Beverage> beverageList = new ArrayList<>();
+
+    //나중에 private 걸어야함
+    public BeverageRepository(){};
 
     public static final String[] FILE_HEADER =
             { "kind", "name", "size", "basePrice", "\n" };
@@ -18,6 +23,8 @@ public class BeverageRepository {
 
     //void add(Beverage beverage){beverageList.add(beverage);}
 
+    public static BeverageRepository getInstance() {return instance;}
+
     public Iterator createIterator(List lists){
         return lists.iterator();
     }
@@ -25,7 +32,7 @@ public class BeverageRepository {
         kindList.add(kind);
     }
 
-    public void load(){
+    public static void load(){
         try(Scanner scanner = new Scanner(new File(resourceFile))){
             if(scanner.hasNext()) scanner.nextLine();
 
@@ -74,18 +81,8 @@ public class BeverageRepository {
     }
     public List<String>getKindList(){return kindList;}
 
-    Beverage search(String kind, String name){
-        return beverageList.stream().filter(b->b.getName().equals(name)&&b.getKind().equals(kind)).findFirst().get();
+    static Beverage search(String name){
+        return beverageList.stream().filter(b->b.getName().equals(name)).findFirst().get();
     }
 
-    //소비자가 요청한 음료 객체 생성
-    Beverage makeBeverage(String kind, String name, String size){
-        Beverage beverage;
-
-        if((beverage = search(kind, name))!=null){
-            beverage.sizeTo(size);
-        }
-
-        return beverage;
-    };
 }

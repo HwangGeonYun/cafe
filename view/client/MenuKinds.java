@@ -6,9 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import Controller.RepositoryController;
-import Menu.BeverageRepository;
+import Menu.Beverage;
 
 public class MenuKinds extends JPanel implements ActionListener {
 
@@ -24,14 +25,14 @@ public class MenuKinds extends JPanel implements ActionListener {
 
     JButton[] buttonList = new JButton[4];
     int kindPageNumber = 0;
-    MenuKinds(RepositoryController rc, MenusPanel menusPanel) {
+    MenuKinds(List<Beverage> beverageList, RepositoryController rc, MenusPanel menusPanel) {
         //this.br = br;
         this.menusPanel = menusPanel;
 
         for(int i = 0;i<4;i++)
             buttonList[i] = new JButton();
 
-        kindList = rc.getKindList();
+        kindList = beverageList.stream().map(b->b.getKind()).distinct().collect(Collectors.toList());
 
         setSize(800, 100);
         setLocation(0, 20);

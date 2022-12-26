@@ -1,4 +1,5 @@
-/*import java.util.Iterator;
+
+import java.util.Iterator;
 import java.util.Scanner;
 
 import Menu.Beverage;
@@ -26,8 +27,8 @@ public class OrderTest {
         Order order = new Order();
         Order.PickUp pickUp = pickUpFactory.makePickUpTakeOut();
         order.setPickUp(pickUp);
-        order.add(new Beverage("MangoBanana", "TALL", "COFFEE"), 1);
-        order.add(new Beverage("Americano", "TALL", "COFFEE"), 1);
+        order.add(new Beverage("Americano", "Tall"), 1);
+        order.add(new Beverage("Latte", "Tall"), 1);
         order.changeSize("Chamomile", "GRANDE");
         order.changeSize("Americano", "GRANDE");
         return order;
@@ -37,7 +38,7 @@ public class OrderTest {
         Order order = new Order();
         Order.PickUp pickUp = pickUpFactory.makePickUpDriveThru("001가0000");
         order.setPickUp(pickUp);
-        order.add(new Beverage("Americano", "TALL", "COFFEE"), 2);
+        order.add(new Beverage("MangoBanana", "Tall"), 2);
         order.changeSize("MangoBanana", "TALL");
         return order;
     }
@@ -46,10 +47,9 @@ public class OrderTest {
         Order order = new Order();
         Order.PickUp pickUp = pickUpFactory.makePickUpDelivery("Pusan National University");
         order.setPickUp(pickUp);
-        order.add(new Beverage("MangoBanana", "TALL", "COFFEE"), 1);
-        order.add(new Beverage("Americano", "TALL", "COFFEE"), 1);
+        order.add(new Beverage("MangoBanana", "Tall"), 1);
+        order.add(new Beverage("Americano", "Tall"), 1);
         order.changeSize("Americano", "VENTI");
         return order;
     }
 }
-*/

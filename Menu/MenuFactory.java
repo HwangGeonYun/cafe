@@ -7,7 +7,7 @@ import java.util.*;
 
 public class MenuFactory {
 
-    BeverageRepository br = new BeverageRepository();
+    //BeverageRepository br = new BeverageRepository();
 
     /*Map<String ,Integer> kinds = new HashMap<>();
     public static int basePriceBykinds(String kind){
@@ -23,16 +23,20 @@ public class MenuFactory {
         br.save(beverage);
     }*/
 
+
     static public Beverage createMenu(String[] fields){
        return new Beverage(ResourceFile.getKind(fields), ResourceFile.getName(fields)
                                            , ResourceFile.getBasePrice(fields),ResourceFile.getSizeList(fields));
     }
-    public String menuToString(Beverage beverage){
+
+    //menu를 String으로 만드는 건데, 왜 만들었지?
+
+    /*public String menuToString(Beverage beverage){
         String getSizeList = beverage.getSizeList().stream().collect(Collectors.joining(", "));
 
         if(beverage.getSizeList().size()>1)
                 getSizeList = "\""+getSizeList +"\"";
 
         return beverage.getKind()+","+beverage.getName()+","+beverage.getBasePrice()+","+getSizeList;
-    }
+    }*/
 }

@@ -29,9 +29,11 @@ public class BeverageHandler extends JFrame implements ActionListener, ItemListe
     JLabel priceLabel;
     JButton create = new JButton("확인");
     JButton cancle = new JButton("취소");
-    BeverageHandler(RepositoryController rc){
-        this.rc = rc;
 
+    List<Beverage> beverageList;
+    BeverageHandler(List<Beverage> beverageList, RepositoryController rc){
+        this.rc = rc;
+        this.beverageList = beverageList;
 
         //너무 지저분 수정 필요할 듯
 
@@ -85,7 +87,7 @@ public class BeverageHandler extends JFrame implements ActionListener, ItemListe
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        beverage = rc.findBeverage(e.getActionCommand());
+        //beverage = beverageList.stream().filter(b->b.getName().equals(name)).findFirst().get();
 
         //변경 가능한 사이즈만 클릭 할 수 있도록 하려고 하는 거
         for(int i = 0;i<3;i++) {

@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Beverage {
-    private final String kind;
-    private final String name;
-    private final int basePrice;
-    private final List<String> sizeList;
+    private  String kind;
+    private  String name;
+    private  int basePrice;
+    private  List<String> sizeList;
 
     private String size;
     private int price;
@@ -24,6 +24,10 @@ public class Beverage {
        // basePriceBykinds();
     }*/
 
+    public Beverage(){
+
+    }
+
     //관리자용
     Beverage(String kind, String name, int basePrice, List<String> sizeList){
         this.kind = kind;
@@ -31,6 +35,25 @@ public class Beverage {
         this.basePrice = basePrice;
         this.sizeList = sizeList;
         //this.priceBySize = priceBySize;
+    }
+    //소비자가 요청한 음료 객체 생성
+    public Beverage(String name, String size){
+        Beverage beverage = BeverageRepository.search(name);
+
+        this.kind = beverage.getKind();
+        this.name = beverage.getName();
+        this.basePrice = beverage.getBasePrice();
+        this.sizeList = beverage.getSizeList();
+        this.size = size;
+        getPriceBySize(size);
+        // makeFactory에서 구현을 해볼까?
+        /*Beverage copy = repository.getBeverageList().stream()
+                .filter(b->b.getName().equals(name)).findFirst().get();
+
+        this.kind = copy.getKind();
+        this.name = copy.getName();
+        basePrice = copy.getBasePrice();
+        sizeList = copy.getSizeList();*/
     }
 
     public String getName(){
